@@ -4,7 +4,6 @@ version = "0.1.0"
 authors = ["Dawid Ciężarkiewicz <dpc@dpc.pw>"]
 description = "Wrap composed types inside-out (eg. `Result<Option<T>, E>` or `Option<Result<T,E>>`"
 keywords = ["option", "result", "inside-out"]
-categories = ["development-tools::lib"]
 license = "MPL-2.0/MIT/Apache-2.0"
 documentation = "https://docs.rs/insideout"
 homepage = "https://github.com/dpc/insideout"
