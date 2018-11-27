@@ -1,6 +1,6 @@
 [package]
 name = "insideout"
-version = "0.1.0"
+version = "0.2.0"
 authors = ["Dawid Ciężarkiewicz <dpc@dpc.pw>"]
 description = "Wrap composed types inside-out (eg. `Result<Option<T>, E>` or `Option<Result<T,E>>`"
 keywords = ["option", "result", "inside-out"]
