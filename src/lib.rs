@@ -37,3 +37,54 @@ impl<T, E> InsideOut for Result<Option<T>, E> {
         }
     }
 }
+
+/// Wrap items of an iterator inside-out
+///
+/// Ideally, this would be a same trait as `InsideOut`,
+/// but because of potential trait impl conflicts, it's
+/// different.
+pub trait InsideOutIter {
+    type Output;
+    fn inside_out_iter(self) -> Self::Output;
+}
+
+impl<I, T> InsideOutIter for I
+where
+    I: Iterator<Item = T>,
+    T: InsideOut,
+{
+    type Output = InsideOutIterImpl<I>;
+
+    fn inside_out_iter(self) -> Self::Output {
+        InsideOutIterImpl(self)
+    }
+}
+
+/// An iterator that performs `InsideOut` on elements of enclosed iterator
+///
+/// Use `inside_out_iter()` to create.
+///
+/// ```
+/// use insideout::InsideOutIter;
+///
+/// let i = vec![Ok(Some(1)), Err(2), Ok(None), Err(3)].into_iter();
+///
+/// let inside_outed :Vec<_> = i.inside_out_iter().collect();
+///
+/// assert_eq!(inside_outed,[Some(Ok(1)), Some(Err(2)), None, Some(Err(3))]);
+///
+/// ```
+///
+pub struct InsideOutIterImpl<I>(I);
+
+impl<I, T> Iterator for InsideOutIterImpl<I>
+where
+    I: Iterator<Item = T>,
+    T: InsideOut,
+{
+    type Item = <T as InsideOut>::Output;
+
+    fn next(&mut self) -> Option<Self::Item> {
+        self.0.next().map(InsideOut::inside_out)
+    }
+}
