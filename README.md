@@ -15,6 +15,7 @@
 # insideout - Wrap composed types inside-out
 
 Turn `Option<Result<O, E>>` into `<Result<Option<O>, E>>` and the other way around.
+Also for `Iterator`s and potentially other types.
 
-Feel free to submit PR especially for other types where this operation makes sense.
+Feel free to submit PR for other types where this operation makes sense.
 
