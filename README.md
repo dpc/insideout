@@ -14,7 +14,7 @@
 
 # insideout - Wrap composed types inside-out
 
-Update: As of 1.33 a functionality like this is available in stdlib (at least for simple type). I wish it was implemented for iterators too.
+Update: As of 1.33 a functionality like this is available in stdlib (at least for simple type). For iterators you can use `iterator.map(Result::transpose)` or `iterator.map(Option::transpose)` ([thread](https://internals.rust-lang.org/t/transpose-for-iterators/10321/2).
 
 Turn `Option<Result<O, E>>` into `<Result<Option<O>, E>>` and the other way around.
 Also for `Iterator`s and potentially other types.
