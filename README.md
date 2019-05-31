@@ -14,6 +14,8 @@
 
 # insideout - Wrap composed types inside-out
 
+Update: As of 1.33 a functionality like this is available in stdlib (at least for simple type). I wish it was implemented for iterators too.
+
 Turn `Option<Result<O, E>>` into `<Result<Option<O>, E>>` and the other way around.
 Also for `Iterator`s and potentially other types.
 
